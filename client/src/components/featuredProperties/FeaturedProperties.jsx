@@ -1,4 +1,5 @@
 import "./featuredProperties.css";
+import bookingImg from "../../assets/bookingImg.jpeg";
 
 const FeaturedProperties = () => {
     return (
@@ -33,7 +34,7 @@ const FeaturedProperties = () => {
             </div>
             <div className="fpItem">
                 <img
-                    src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/232902339.jpg?k=3947def526b8af0429568b44f9716e79667d640842c48de5e66fd2a8b776accd&o=&hp=1"
+                    src={bookingImg}
                     alt=""
                     className="fpImg"
                 />

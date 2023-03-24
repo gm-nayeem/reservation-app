@@ -137,7 +137,9 @@ const Hotel = () => {
                     </div>
                 </div>
                 <MailList />
-                <Footer />
+                <div div style={{marginTop: "30px"}}>
+                    <Footer/>
+                </div>
             </div>
         </div>
     );

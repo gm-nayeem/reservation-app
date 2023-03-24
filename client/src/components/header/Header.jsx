@@ -96,6 +96,7 @@ const Header = ({ type }) => {
                                     onChange={(e) => setDestination(e.target.value)}
                                 />
                             </div>
+                            {/* date change section */}
                             <div className="headerSearchItem">
                                 <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
                                 <span
@@ -116,6 +117,7 @@ const Header = ({ type }) => {
                                     />
                                 )}
                             </div>
+                            {/* room choose section */}
                             <div className="headerSearchItem">
                                 <FontAwesomeIcon icon={faPerson} className="headerIcon" />
                                 <span

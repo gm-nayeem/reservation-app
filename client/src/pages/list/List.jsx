@@ -9,6 +9,8 @@ import SearchItem from "../../components/searchItem/SearchItem";
 
 const List = () => {
     const location = useLocation();
+    console.log(location);
+
     const [destination, setDestination] = useState(location.state.destination);
     const [date, setDate] = useState(location.state.date);
     const [openDate, setOpenDate] = useState(false);
@@ -29,12 +31,12 @@ const List = () => {
                         <div className="lsItem">
                             <label>Check-in Date</label>
                             <span onClick={() => setOpenDate(!openDate)}>{`${format(
-                                date[0].startDate,
+                                date[0]?.startDate,
                                 "MM/dd/yyyy"
                             )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
                             {openDate && (
                                 <DateRange
-                                    onChange={(item) => setDate([item.selection])}
+                                    onChange={(item) => setDate([item?.selection])}
                                     minDate={new Date()}
                                     ranges={date}
                                 />
@@ -87,12 +89,6 @@ const List = () => {
                         <button>Search</button>
                     </div>
                     <div className="listResult">
-                        <SearchItem />
-                        <SearchItem />
-                        <SearchItem />
-                        <SearchItem />
-                        <SearchItem />
-                        <SearchItem />
                         <SearchItem />
                         <SearchItem />
                         <SearchItem />
