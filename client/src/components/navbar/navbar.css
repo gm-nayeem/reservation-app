@@ -23,9 +23,9 @@
     gap: 20px;
 }
 
-span {
+.navItems span {
     cursor: pointer;
-    font-size: 18px;
+    text-transform: capitalize;
 }
 
 .navButton {

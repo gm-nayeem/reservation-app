@@ -1,5 +1,5 @@
 import "./navbar.css"
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -15,7 +15,9 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="navContainer">
-                <span className="logo">Mernbooking</span>
+                <Link to="/" className="linkStyle">
+                    <span className="logo">Mernbooking</span>
+                </Link>
                 {
                     user ? (
                         <div className="navItems">

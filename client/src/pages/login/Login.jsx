@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { publicRequest } from "../../utils/request";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
@@ -34,6 +34,7 @@ const Login = () => {
     return (
         <div className="login">
             <div className="lContainer">
+                <h1 className="loginTitle">Login your Account</h1>
                 <input
                     type="text"
                     placeholder="username"
@@ -51,6 +52,9 @@ const Login = () => {
                 <button disabled={loading} onClick={handleClick} className="lButton">
                     Login
                 </button>
+                <Link to="/register" className="linkStyle">
+                    <span className="navLink">Don't have an account? click here</span>
+                </Link>
                 {error && <span style={{color: "red"}}>{error.message}</span>}
             </div>
         </div>

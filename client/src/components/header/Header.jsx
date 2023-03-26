@@ -1,3 +1,5 @@
+import "./header.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faBed,
     faCalendarDays,
@@ -6,16 +8,16 @@ import {
     faPlane,
     faTaxi,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./header.css";
-import { DateRange } from "react-date-range";
-import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRange } from "react-date-range";
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Header = ({ type }) => {
+    const { user } = useContext(AuthContext);
     const [destination, setDestination] = useState("");
     const [openDate, setOpenDate] = useState(false);
     const [date, setDate] = useState([
@@ -34,6 +36,7 @@ const Header = ({ type }) => {
 
     const navigate = useNavigate();
 
+    // handle options
     const handleOption = (name, operation) => {
         setOptions((prev) => {
             return {
@@ -43,8 +46,11 @@ const Header = ({ type }) => {
         });
     };
 
+    // handle search
     const handleSearch = () => {
         navigate("/hotels", { state: { destination, date, options } });
+        setOpenDate(false);
+        setOpenOptions(false);
     };
 
     return (
@@ -83,9 +89,15 @@ const Header = ({ type }) => {
                         </h1>
                         <p className="headerDesc">
                             Get rewarded for your travels – unlock instant savings of 10% or
-                            more with a free Lamabooking account
+                            more with a free Mernbooking account
                         </p>
-                        <button className="headerBtn">Sign in / Register</button>
+                        {
+                            !user && (
+                                <Link to="/login" className="linkStyle">
+                                    <button className="headerBtn">Sign in / Register</button>
+                                </Link>
+                            )
+                        }
                         <div className="headerSearch">
                             <div className="headerSearchItem">
                                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
@@ -96,16 +108,18 @@ const Header = ({ type }) => {
                                     onChange={(e) => setDestination(e.target.value)}
                                 />
                             </div>
-                            {/* date change section */}
+                            {/* date section */}
                             <div className="headerSearchItem">
                                 <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
                                 <span
                                     onClick={() => setOpenDate(!openDate)}
                                     className="headerSearchText"
-                                >{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-                                    date[0].endDate,
-                                    "MM/dd/yyyy"
-                                )}`}</span>
+                                >
+                                    {
+                                        `${format(date[0].startDate, "MM/dd/yyyy")} to 
+                                        ${format(date[0].endDate, "MM/dd/yyyy")}`
+                                    }
+                                </span>
                                 {openDate && (
                                     <DateRange
                                         editableDateInputs={true}
@@ -117,13 +131,17 @@ const Header = ({ type }) => {
                                     />
                                 )}
                             </div>
-                            {/* room choose section */}
+                            {/* options section */}
                             <div className="headerSearchItem">
                                 <FontAwesomeIcon icon={faPerson} className="headerIcon" />
                                 <span
                                     onClick={() => setOpenOptions(!openOptions)}
                                     className="headerSearchText"
-                                >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+                                >
+                                    {
+                                        `${options.adult} adult · ${options.children} children · ${options.room} room`
+                                    }
+                                </span>
                                 {openOptions && (
                                     <div className="options">
                                         <div className="optionItem">

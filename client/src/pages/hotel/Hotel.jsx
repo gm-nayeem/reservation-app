@@ -1,4 +1,5 @@
 import "./hotel.css";
+import { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
@@ -10,7 +11,6 @@ import {
     faCircleXmark,
     faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 
 const Hotel = () => {
     const [slideNumber, setSlideNumber] = useState(0);
@@ -137,8 +137,8 @@ const Hotel = () => {
                     </div>
                 </div>
                 <MailList />
-                <div div style={{marginTop: "30px"}}>
-                    <Footer/>
+                <div div style={{ marginTop: "30px" }}>
+                    <Footer />
                 </div>
             </div>
         </div>

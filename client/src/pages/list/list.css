@@ -14,7 +14,7 @@
 .listSearch {
     flex: 1;
     background-color: #febb02;
-    padding: 10px;
+    padding: 12px;
     border-radius: 10px;
     position: sticky;
     top: 10px;
@@ -42,11 +42,13 @@
     height: 30px;
     border: none;
     padding: 5px;
+    border-radius: 5px;
 }
 
 .lsItem>span {
     height: 30px;
     padding: 5px;
+    border-radius: 5px;
     background-color: white;
     display: flex;
     align-items: center;
@@ -67,6 +69,9 @@
 
 .lsOptionInput {
     width: 50px;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
 }
 
 .listSearch>button {
@@ -74,6 +79,7 @@
     background-color: #0071c2;
     color: white;
     border: none;
+    border-radius: 5px;
     width: 100%;
     font-weight: 500;
     cursor: pointer;
