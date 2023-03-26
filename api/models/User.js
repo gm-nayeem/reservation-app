@@ -18,6 +18,7 @@ const UserSchema = mongoose.Schema(
         },
         img: {
             type: String,
+            default: ""
         },
         city: {
             type: String,

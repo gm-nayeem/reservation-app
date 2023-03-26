@@ -18,8 +18,17 @@
     font-weight: 500;
 }
 
+.navItems {
+    display: flex;
+    gap: 20px;
+}
+
+span {
+    cursor: pointer;
+    font-size: 18px;
+}
+
 .navButton {
-    margin-left: 20px;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;

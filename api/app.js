@@ -5,10 +5,10 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 // routes
-const authRoute = require("./routes/auth.js");
-const usersRoute = require("./routes/users.js");
-const hotelsRoute = require("./routes/hotels.js");
-const roomsRoute = require("./routes/rooms.js");
+const authRoute = require("./routes/authRoute");
+const usersRoute = require("./routes/userRoute");
+const hotelsRoute = require("./routes/hotelRoute");
+const roomsRoute = require("./routes/roomRoute");
 
 
 const app = express();

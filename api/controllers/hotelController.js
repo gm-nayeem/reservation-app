@@ -1,6 +1,7 @@
 const Hotel = require("../models/Hotel");
 const Room = require("../models/Room");
 
+// create hotel
 const createHotel = async (req, res, next) => {
     const newHotel = new Hotel(req.body);
 
@@ -34,6 +35,7 @@ const deleteHotel = async (req, res, next) => {
     }
 };
 
+// single hotel
 const getHotel = async (req, res, next) => {
     try {
         const hotel = await Hotel.findById(req.params.id);
@@ -43,6 +45,7 @@ const getHotel = async (req, res, next) => {
     }
 };
 
+// all hotel
 const getHotels = async (req, res, next) => {
     const { min, max, ...others } = req.query;
     try {

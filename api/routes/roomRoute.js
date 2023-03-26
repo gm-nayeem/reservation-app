@@ -11,20 +11,20 @@ const {
 const { verifyAdmin } = require("../middleware/verifyToken");
 
 
-//CREATE
+// create room
 router.post("/:hotelid", verifyAdmin, createRoom);
 
-//UPDATE
+// update room
 router.put("/availability/:id", updateRoomAvailability);
 router.put("/:id", verifyAdmin, updateRoom);
 
-//DELETE
+// delete room
 router.delete("/:id/:hotelid", verifyAdmin, deleteRoom);
 
-//GET
-router.get("/:id", getRoom);
+// single room
+router.get("/find/:id", getRoom);
 
-//GET ALL
+// all rooms
 router.get("/", getRooms);
 
 
