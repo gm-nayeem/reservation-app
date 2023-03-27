@@ -3,7 +3,7 @@ const SearchReducer = (state, action) => {
         case "NEW_SEARCH":
             return action.payload;
         case "RESET_SEARCH":
-            return INITIAL_STATE;
+            return state;
         default:
             return state;
     }

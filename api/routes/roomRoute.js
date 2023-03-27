@@ -15,8 +15,8 @@ const { verifyAdmin } = require("../middleware/verifyToken");
 router.post("/:hotelid", verifyAdmin, createRoom);
 
 // update room
+router.put("/update/:id", verifyAdmin, updateRoom);
 router.put("/availability/:id", updateRoomAvailability);
-router.put("/:id", verifyAdmin, updateRoom);
 
 // delete room
 router.delete("/:id/:hotelid", verifyAdmin, deleteRoom);

@@ -12,7 +12,7 @@ const List = () => {
     const location = useLocation();
     const [destination, setDestination] = useState(location?.state?.destination || "choose destination");
     const [openDate, setOpenDate] = useState(false);
-    const [date, setDate] = useState(location?.state?.date || [{
+    const [dates, setDates] = useState(location?.state?.dates || [{
         startDate: new Date(),
         endDate: new Date(),
         key: "selection",
@@ -46,24 +46,22 @@ const List = () => {
                         {/* destination section */}
                         <div className="lsItem">
                             <label>Destination</label>
-                            <input placeholder={destination} type="text" 
-                                onChange={(e) => setDestination(e.target.value)}
-                            />
+                            <input placeholder={destination} type="text" />
                         </div>
                         {/* date section */}
                         <div className="lsItem">
                             <label>Check-in Date</label>
                             <span onClick={() => setOpenDate(!openDate)}>
                                 {
-                                    `${format(date[0].startDate, "MM/dd/yyyy")} to 
-                                    ${format(date[0].endDate, "MM/dd/yyyy")}`
+                                    `${format(dates[0].startDate, "MM/dd/yyyy")} to 
+                                    ${format(dates[0].endDate, "MM/dd/yyyy")}`
                                 }
                             </span>
                             {openDate && (
                                 <DateRange
                                     onChange={(item) => setDate([item.selection])}
                                     minDate={new Date()}
-                                    ranges={date}
+                                    ranges={dates}
                                 />
                             )}
                         </div>

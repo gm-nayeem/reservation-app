@@ -21,6 +21,7 @@ const createRoom = async (req, res, next) => {
     }
 };
 
+// update room
 const updateRoom = async (req, res, next) => {
     try {
         const updatedRoom = await Room.findByIdAndUpdate(
@@ -34,6 +35,7 @@ const updateRoom = async (req, res, next) => {
     }
 };
 
+// update room with date
 const updateRoomAvailability = async (req, res, next) => {
     try {
         await Room.updateOne(
@@ -50,6 +52,7 @@ const updateRoomAvailability = async (req, res, next) => {
     }
 };
 
+// delete room
 const deleteRoom = async (req, res, next) => {
     const hotelId = req.params.hotelid;
     try {
