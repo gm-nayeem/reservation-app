@@ -15,13 +15,16 @@ const Reserve = ({ setOpen, hotelId }) => {
 
     // find date range
     const getDatesInRange = (startDate, endDate) => {
-        const start = startDate;
-        const end = endDate;
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+
+        const date = new Date(start.getTime());
 
         const dates = [];
-        while (start <= end) {
-            dates.push(start.getTime());
-            start.setDate(start.getDate() + 1);
+
+        while (date <= end) {
+            dates.push(new Date(date).getTime());
+            date.setDate(date.getDate() + 1);
         }
         return dates;
     };
@@ -77,7 +80,7 @@ const Reserve = ({ setOpen, hotelId }) => {
                 />
                 <span>Select your rooms:</span>
                 {data.map((item) => (
-                    <div div className = "rItem" key = { item._id } >
+                    <div div className="rItem" key={item._id} >
                         <div className="rItemInfo">
                             <div className="rTitle">{item.title}</div>
                             <div className="rDesc">{item.desc}</div>
@@ -101,10 +104,10 @@ const Reserve = ({ setOpen, hotelId }) => {
                         </div>
                     </div>
                 ))}
-            <button onClick={handleClick} className="rButton">
-                Reserve Now!
-            </button>
-        </div>
+                <button onClick={handleClick} className="rButton">
+                    Reserve Now!
+                </button>
+            </div>
         </div >
     );
 };

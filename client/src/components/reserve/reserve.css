@@ -20,6 +20,7 @@
     position: absolute;
     top: 0;
     right: 0;
+    padding: 5px;
     cursor: pointer;
 }
 
@@ -63,6 +64,10 @@
 .room {
     display: flex;
     flex-direction: column;
+}
+
+.room > input:disabled {
+    cursor: not-allowed;
 }
 
 .rButton {

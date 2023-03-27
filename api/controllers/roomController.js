@@ -35,7 +35,7 @@ const updateRoom = async (req, res, next) => {
     }
 };
 
-// update room with date
+// update room Numbers using room numbers id
 const updateRoomAvailability = async (req, res, next) => {
     try {
         await Room.updateOne(
