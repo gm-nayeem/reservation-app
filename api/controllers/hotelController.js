@@ -13,6 +13,7 @@ const createHotel = async (req, res, next) => {
     }
 };
 
+// update hotel
 const updateHotel = async (req, res, next) => {
     try {
         const updatedHotel = await Hotel.findByIdAndUpdate(
@@ -26,6 +27,7 @@ const updateHotel = async (req, res, next) => {
     }
 };
 
+// delete hotel
 const deleteHotel = async (req, res, next) => {
     try {
         await Hotel.findByIdAndDelete(req.params.id);
@@ -47,18 +49,21 @@ const getHotel = async (req, res, next) => {
 
 // all hotel
 const getHotels = async (req, res, next) => {
-    const { min, max, ...others } = req.query;
+    // const { min, max, ...others } = req.query;
+    const {limit, ...others} = req.query;
+    
     try {
         const hotels = await Hotel.find({
             ...others,
-            cheapestPrice: { $gt: min | 1, $lt: max || 999 },
-        }).limit(req.query.limit);
+            cheapestPrice: { $gt: req.query.min || 1, $lt: req.query.max || 999 },
+        }).limit(limit);
         res.status(200).json(hotels);
     } catch (err) {
         next(err);
     }
 };
 
+// count hotel through city
 const countByCity = async (req, res, next) => {
     const cities = req.query.cities.split(",");
     try {
@@ -73,6 +78,7 @@ const countByCity = async (req, res, next) => {
     }
 };
 
+// count hotel through type
 const countByType = async (req, res, next) => {
     try {
         const hotelCount = await Hotel.countDocuments({ type: "hotel" });
@@ -93,6 +99,7 @@ const countByType = async (req, res, next) => {
     }
 };
 
+// find hotel room thorugh hotel id
 const getHotelRooms = async (req, res, next) => {
     try {
         const hotel = await Hotel.findById(req.params.id);
