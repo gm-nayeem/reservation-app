@@ -1,11 +1,9 @@
 import "./featuredProperties.css";
-import bookingImg from "../../assets/bookingImg.jpeg";
 import useFetch from "../../hooks/useFetch";
 
 const FeaturedProperties = () => {
     const { data, loading, error } = useFetch("/hotels?featured=true&limit=4");
 
-    console.log(data)
     return (
         <div className="fp">
             {
