@@ -81,3 +81,11 @@
     width: 100%;
     margin-top: 20px;
 }
+
+.error {
+    display: flex;
+    justify-content: center;
+    color: red;
+    font-size: 18px;
+    margin-top: 10px;
+}

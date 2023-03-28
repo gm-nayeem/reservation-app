@@ -10,7 +10,8 @@ import { publicRequest } from "../../utils/request";
 const Reserve = ({ setOpen, hotelId }) => {
     const [selectedRooms, setSelectedRooms] = useState([]);
     const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
-    const { dates } = useContext(SearchContext);
+    const { dates, options } = useContext(SearchContext);
+    const [reserveError, setReserveError] = useState("");
     // console.log(data)
 
     // find date range
@@ -28,7 +29,7 @@ const Reserve = ({ setOpen, hotelId }) => {
         }
         return dates;
     };
-    const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
+    let alldates = getDatesInRange(dates[0]?.startDate, dates[0]?.endDate);
 
     // check room available or not
     const isAvailable = (roomNumber) => {
@@ -54,60 +55,80 @@ const Reserve = ({ setOpen, hotelId }) => {
 
     // handle submit 
     const handleClick = async () => {
-        try {
-            await Promise.all(
-                selectedRooms.map((roomId) => {
-                    const res = publicRequest.put(`/rooms/availability/${roomId}`, {
-                        dates: alldates,
-                    });
-                    return res.data;
-                })
-            );
+        if (selectedRooms.length !== options.room) {
+            setReserveError(`You must select ${options?.room} rooms`);
+        } else {
+            try {
+                await Promise.all(
+                    selectedRooms.map((roomId) => {
+                        const res = publicRequest.put(`/rooms/availability/${roomId}`, {
+                            dates: alldates,
+                        });
+                        return res.data;
+                    })
+                );
 
-            setOpen(false);
-            navigate("/");
-        } catch (err) { }
+                setOpen(false);
+                navigate("/");
+            } catch (err) { }
+        }
+
     };
 
 
     return (
         <div className="reserve">
-            <div className="rContainer">
-                <FontAwesomeIcon
-                    icon={faCircleXmark}
-                    className="rClose"
-                    onClick={() => setOpen(false)}
-                />
-                <span>Select your rooms:</span>
-                {data.map((item) => (
-                    <div div className="rItem" key={item._id} >
-                        <div className="rItemInfo">
-                            <div className="rTitle">{item.title}</div>
-                            <div className="rDesc">{item.desc}</div>
-                            <div className="rMax">
-                                Max people: <b>{item.maxPeople}</b>
-                            </div>
-                            <div className="rPrice">{item.price}</div>
-                        </div>
-                        <div className="rSelectRooms">
-                            {item.roomNumbers.map((roomNumber) => (
-                                <div className="room">
-                                    <label>{roomNumber.number}</label>
-                                    <input
-                                        type="checkbox"
-                                        value={roomNumber._id}
-                                        onChange={handleSelect}
-                                        disabled={isAvailable(roomNumber)}
-                                    />
+            {
+                loading ? (
+                    "Loading please wait..."
+                ) : error ? (
+                    "Something went wrong!!"
+                ) : (
+                    <div className="rContainer">
+                        <FontAwesomeIcon
+                            icon={faCircleXmark}
+                            className="rClose"
+                            onClick={() => setOpen(false)}
+                        />
+                        <span>Select your rooms:</span>
+                        {
+                            data && data.map((item) => (
+                                <div div className="rItem" key={item._id} >
+                                    <div className="rItemInfo">
+                                        <div className="rTitle">{item.title}</div>
+                                        <div className="rDesc">{item.desc}</div>
+                                        <div className="rMax">
+                                            Max people: <b>{item.maxPeople}</b>
+                                        </div>
+                                        <div className="rPrice">{item.price}</div>
+                                    </div>
+                                    <div className="rSelectRooms">
+                                        {
+                                            item.roomNumbers && item.roomNumbers.map((roomNumber) => (
+                                                <div className="room" key={roomNumber._id}>
+                                                    <label>{roomNumber.number}</label>
+                                                    <input
+                                                        type="checkbox"
+                                                        value={roomNumber._id}
+                                                        onChange={handleSelect}
+                                                        disabled={isAvailable(roomNumber)}
+                                                    />
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
                                 </div>
-                            ))}
-                        </div>
+                            ))
+                        }
+                        <button onClick={handleClick} className="rButton">
+                            Reserve Now!
+                        </button>
+                        {
+                            reserveError && <span className="error">{reserveError}</span>
+                        }
                     </div>
-                ))}
-                <button onClick={handleClick} className="rButton">
-                    Reserve Now!
-                </button>
-            </div>
+                )
+            }
         </div >
     );
 };

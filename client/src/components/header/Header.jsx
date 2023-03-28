@@ -51,11 +51,13 @@ const Header = ({ type }) => {
 
     // handle search
     const handleSearch = () => {
-        dispatch({ type: "NEW_SEARCH", payload: { city: destination, dates, options } });
-        navigate("/hotels", { state: { destination, dates, options } });
-        
         setOpenDates(false);
         setOpenOptions(false);
+
+        if(destination) {
+            dispatch({ type: "NEW_SEARCH", payload: { city: destination, dates, options } });
+            navigate("/hotels", { state: { destination, dates, options } });
+        }
     };
 
     return (
