@@ -10,6 +10,6 @@ export const publicRequest = axios.create({
 export const userRequest = axios.create({
     baseURL: API_URL,
     headers: {
-        access_token: JSON.parse(localStorage.getItem("user")) && `Bearer ${JSON.parse(localStorage.getItem("user"))?.token}`
+        access_token: JSON.parse(localStorage.getItem("admin")) && `Bearer ${JSON.parse(localStorage.getItem("admin"))?.token}`
     }
 });

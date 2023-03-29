@@ -1,0 +1,14 @@
+.app {
+    display: flex;
+
+    .container{
+        flex: 5;
+        flex-direction: column;
+    }
+
+    .linkStyle {
+        text-decoration: none;
+        color: transparent;
+    }
+}
+ 
