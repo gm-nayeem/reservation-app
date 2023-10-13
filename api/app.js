@@ -1,4 +1,4 @@
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -10,9 +10,7 @@ const usersRoute = require("./routes/userRoute");
 const hotelsRoute = require("./routes/hotelRoute");
 const roomsRoute = require("./routes/roomRoute");
 
-
 const app = express();
-
 
 // database connection
 const connect = async () => {
@@ -38,13 +36,6 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
-
-app.get('/', (req, res) => {
-    res.status(200).send({
-        success: true,
-        message: 'all ok'
-    })
-});
 
 // error handle
 app.use((err, req, res, next) => {
