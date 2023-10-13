@@ -16,7 +16,6 @@ const Datatable = ({ columns }) => {
         path==="users" && "userRequest"
     );
 
-
     // set data
     useEffect(() => {
         setLists(data);

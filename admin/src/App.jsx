@@ -21,10 +21,10 @@ import Error from './pages/error/Error';
 // components
 import Navbar from './components/navbar/Navbar';
 import Sidebar from './components/sidebar/Sidebar';
-import { userInputs } from './formSource';
 import './style/dark.scss';
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from './context/AuthContext';
+import { userInputs } from './formSource';
 import {
   userColumns, hotelColumns, roomColumns
 } from './datatableSource';

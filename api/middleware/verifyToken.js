@@ -5,7 +5,7 @@ const createError  = require("../utils/error");
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers.access_token;
     if(!authHeader) {
-        createError(401, "Access token is required")
+        next(createError(401, "Access token is required"));
     } 
 
     const token = authHeader.split(" ")[1];

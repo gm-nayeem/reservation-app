@@ -2,18 +2,12 @@ import './sidebar.scss';
 import { Link, useNavigate } from 'react-router-dom';
 
 // material icons
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
-import StoreIcon from "@mui/icons-material/Store";
-import InsertChartIcon from "@mui/icons-material/InsertChart";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import {
+  Dashboard, PersonOutline, LocalShipping, CreditCard,
+  InsertChart, Store, SettingsApplications, ExitToApp,
+  NotificationsNone, SettingsSystemDaydreamOutlined,
+  PsychologyOutlined, AccountCircleOutlined
+} from "@mui/icons-material";
 import { useContext } from 'react';
 import {DarkModeContext} from '../../context/darkModeContext'
 import {AuthContext} from "../../context/AuthContext"
@@ -42,62 +36,62 @@ const Sidebar = () => {
           <p className='title'>MAIN</p>
           <Link to="/" className='linkStyle'>
             <li>
-              <DashboardIcon className="icon" />
+              <Dashboard className="icon" />
               <span>Dashboard</span>
             </li>
           </Link>
           <p className='title'>LISTS</p>
           <Link to="/users" className='linkStyle'>
             <li>
-              <PersonOutlineIcon className="icon" />
+              <PersonOutline className="icon" />
               <span>Users</span>
             </li>
           </Link>
           <Link to="/hotels" className='linkStyle'>
             <li>
-              <StoreIcon className="icon" />
+              <Store className="icon" />
               <span>Hotels</span>
             </li>
           </Link>
           <Link to="/rooms" className='linkStyle'>
             <li>
-              <CreditCardIcon className="icon" />
+              <CreditCard className="icon" />
               <span>Rooms</span>
             </li>
           </Link>
           <li>
-            <LocalShippingIcon className="icon" />
+            <LocalShipping className="icon" />
             <span>Delivery</span>
           </li>
           <p className='title'>USEFUL</p>
           <li>
-            <InsertChartIcon className="icon" />
+            <InsertChart className="icon" />
             <span>Stats</span>
           </li>
           <li>
-            <NotificationsNoneIcon className="icon" />
+            <NotificationsNone className="icon" />
             <span>Notifications</span>
           </li>
           <p className='title'>SERVICES</p>
           <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
+            <SettingsSystemDaydreamOutlined className="icon" />
             <span>System Health</span>
           </li>
           <li>
-            <PsychologyOutlinedIcon className="icon" />
+            <PsychologyOutlined className="icon" />
             <span>Logs</span>
           </li>
           <li>
-            <SettingsApplicationsIcon className="icon" />
+            <SettingsApplications className="icon" />
             <span>Settings</span>
           </li>
           <p className='title'>USER</p>
           <li>
-            <AccountCircleOutlinedIcon className="icon" />
+            <AccountCircleOutlined className="icon" />
             <span>Profile</span>
           </li>
           <li onClick={handleLogout}>
-            <ExitToAppIcon className="icon" />
+            <ExitToApp className="icon" />
             <span>Logout</span>
           </li>
         </ul>
@@ -116,4 +110,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default Sidebar;
