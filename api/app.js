@@ -31,6 +31,7 @@ app.use(morgan("dev"))
 app.use(cors())
 app.use(express.json());
 
+
 // routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
